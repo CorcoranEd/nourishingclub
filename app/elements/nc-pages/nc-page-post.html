@@ -1,0 +1,154 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="nc-page-post">
+	<template>
+		<style include="shared-styles">
+			.details {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				margin: 2em 0;
+			}
+
+			.detail {
+				display: flex;
+				flex-flow: column nowrap;
+				align-items: center;
+			}
+
+			.recipe {
+				display: flex;
+				flex-flow: row wrap;
+				margin: 3em 0;
+				border: 1px solid var(--grey-color-light);
+				border-radius: 4px;
+				padding: 1em 3em 2em 3em;
+			}
+
+			.recipe-name {
+				width: 100%;
+			}
+
+			.side {
+				flex: 1;
+				margin-right: 2em;
+			}
+
+			.method {
+				flex: 2;
+			}
+
+			.post-name {
+				margin-top: 1em;
+			}
+		</style>
+
+		<app-route route="{{route}}"
+					 pattern="/post/:post"
+					 data="{{routeData}}"
+					 active="{{pageActive}}"></app-route>
+
+		<section class="wrapper">
+			<div class="image-block">
+	      <iron-image src="http:[[post.fields.heroImage.fields.file.url]]" sizing="cover" preload fade></iron-image>
+	    </div>
+			
+			<div class="copy-wrapper">
+				<h1 class="post-name">[[post.fields.title]]</h1>
+				<h4>By [[post.fields.author.fields.name]]</h4>
+
+				<marked-element markdown="[[post.fields.blog]]">
+					<div slot="markdown-html"></div>
+				</marked-element>
+			</div>
+
+			<div class="recipe">
+				<div class="recipe-name">
+					<h1 class="post-name">[[post.fields.title]]</h1>
+					<h4>By [[post.fields.author.fields.name]]</h4>
+					<h5 hidden="[[!post.fields.recipeCategory.0.fields.title]]">Category — [[post.fields.recipeCategory.0.fields.title]]</h5>
+				</div>
+
+				<div class="details">
+					<div class="detail">
+						<h3>Prep Time</h3>
+						<h1>[[post.fields.prepTime]]</h1>
+					</div>
+
+					<div class="detail">
+						<h3>Cook Time</h3>
+						<h1>[[post.fields.cookTime]]</h1>
+					</div>
+
+					<div class="detail">
+						<h3>Serves</h3>
+						<h1>[[post.fields.serves]]</h1>
+					</div>
+				</div>
+
+				<div class="side">
+					<template is="dom-repeat" items="[[post.fields.ingredients]]">
+						<h3>[[item.fields.title]]</h3>
+						<ul>
+							<template is="dom-repeat" items="[[item.fields.list]]">
+								<li>[[item]]</li>
+							</template>
+						</ul>
+					</template>
+
+					<div hidden="[[!post.fields.nutritionInformation]]">
+						<h3>Nutritional Information</h3>
+						<ul>
+							<template is="dom-repeat" items="[[post.fields.nutritionInformation]]">
+								<li>[[item]]</li>
+							</template>
+						</ul>
+					</div>
+
+					<div hidden="[[!post.fields.notes]]">
+						<h3>Notes</h3>
+						<template is="dom-repeat" items="[[post.fields.notes]]">
+							<p>[[item]]</p>
+						</template>
+					</div>
+				</div>
+
+				<div class="method">
+					<h3>Method</h3>
+					<marked-element markdown="[[post.fields.paragraphmethod]]">
+						<div slot="markdown-html"></div>
+					</marked-element>
+				</div>
+			</div>
+		</section>
+
+	</template>
+	<script>
+	Polymer({
+
+		is: 'nc-page-post',
+
+		properties: {
+			route: Object,
+			routeData: Object,
+
+			posts: Object,
+			post: Object
+		},
+
+		observers:[
+			'_onPostChanged(route, routeData, routeData.post, posts, pageActive)',
+		],
+
+		_onPostChanged:function(){
+			var slug = this.routeData.post;
+
+			var post = (this.posts.items || []).filter(function(current){
+				return current.fields.slug === slug;
+			}).shift();
+
+			this.set('post', post);
+		},
+
+	});
+	</script>
+</dom-module>

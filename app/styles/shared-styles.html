@@ -1,0 +1,220 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<!-- shared styles for all elements and index.html -->
+<dom-module id="shared-styles">
+	<template>
+		<style>
+		:root {
+			/*font variables*/
+			--base-font-family:  'Quicksand', Helvetica, Arial, sans-serif;
+			--base-font-size: 16px;
+			--base-font-weight: 400;
+			--small-font-size: calc(var(--base-font-size) * 0.875);
+			--base-line-height: 1.8em;
+			/*spacing variables*/
+			--spacing-unit: 40px;
+			--content-width: 1200px;
+			--max-width-x-large: 1600px;
+			--max-width-large: 1200px;
+			--max-width-medium: 1000px;
+			--max-width-small: 600px;
+			/*color variables  #404041*/
+			--text-color: var(--main-color);
+			--background-color: #FFFFFF;
+			--main-color: #333;
+			--grey-color: #828282;
+			--grey-color-light: #E8E8E8;
+			--grey-color-dark: #424242;
+			--divider: 2px solid var(--primary-color);
+		}
+
+		/** {
+			background: rgba(0, 0, 0, 0.1);
+			outline: 1px dotted rgba(0, 0, 0, 0.5);
+		}*/
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p,
+		blockquote,
+		pre,
+		hr,
+		dl,
+		dd,
+		/*ol,
+		ul,*/
+		figure {
+			margin: 0;
+			padding: 0;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p,
+		blockquote,
+		pre,
+		ul,
+		ol,
+		dl,
+		figure {
+			margin-bottom: calc(var(--spacing-unit) / 2);
+		}
+
+		body {
+			font: var(--base-font-weight) var(--base-font-size)/var(--base-line-height) var(--base-font-family);
+			color: var(--text-color);
+			background-color: var(--background-color);
+			font-feature-settings: "kern" 1;
+			font-kerning: normal;
+		}
+
+		img {
+			max-width: 100%;
+			vertical-align: middle;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-weight: var(--base-font-weight);
+		}
+
+		h1 {
+			font-weight: 500;
+			font-size: 2.625em;
+			line-height: 1em;
+		}
+
+		h2 {
+			font-weight: 500;
+			font-size: 2em;
+			line-height: 1em;
+		}
+
+		h3 {
+			font-weight: 500;
+			font-size: 1.5em;
+			line-height: 1em;
+		}
+
+		h4 {
+			font-weight: 500;
+			font-size: 1.125em;
+			line-height: 1em;
+		}
+
+		h5 {
+			font-weight: 500;
+			font-size: 1em;
+			line-height: 1em;
+		}
+
+		h6 {
+			font-size: 0.875em;
+			line-height: 1em;
+		}
+
+		marked-element ::content a,
+		a {
+			color: var(--main-color);
+			text-decoration: none;
+		}
+
+		marked-element ::content a {
+			text-decoration: underline;
+		}
+
+		marked-element ::content a:visited,
+		a:visited {
+			color: var(--main-color);
+		}
+
+		marked-element ::content a:hover,
+		a:hover {
+			color: var(--main-color);
+			text-decoration: underline;
+		}
+
+		iron-image {
+			width:100%;
+			--iron-image-width: 100%;
+		}
+
+		.image-block {
+			display: block;
+			width: 100%;
+			padding-top: 56.25%;
+			position: relative;
+			background: grey;
+			overflow: hidden;
+		}
+
+		iron-image {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 150%;
+		}
+
+		.wrapper {
+			position: relative;
+			margin-right: auto;
+			margin-left: auto;
+
+			padding-right: var(--spacing-unit);
+			padding-left: var(--spacing-unit);
+		}
+
+		.copy-wrapper {
+			max-width: 40em;
+			margin: 3em auto;
+		}
+
+		@media (max-width: 2560px) {
+			.wrapper {
+				max-width: var(--max-width-x-large);
+			}
+
+			.wide-wrapper {
+				padding-right: calc(var(--spacing-unit) / 2);
+				padding-left: calc(var(--spacing-unit) / 2);
+			}
+		}
+
+		@media (max-width: 1680px) {
+			.wrapper {
+				max-width: var(--content-width);
+			}
+
+			.wide-wrapper {
+				padding-right: calc(var(--spacing-unit) / 2);
+				padding-left: calc(var(--spacing-unit) / 2);
+			}
+		}
+
+		@media (max-width: 680px) {
+			.wide-wrapper {
+				padding-right: calc(var(--spacing-unit) / 4);
+				padding-left: calc(var(--spacing-unit) / 4);
+			}
+		}
+
+		</style>
+	</template>
+</dom-module>

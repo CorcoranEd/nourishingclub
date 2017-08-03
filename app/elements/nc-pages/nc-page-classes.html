@@ -1,0 +1,49 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="nc-page-classes">
+	<template>
+		<style include="shared-styles">
+		</style>
+
+		<epic-contentful token$="[[config.contentful.token]]"
+										 space$="[[config.contentful.space]]"
+										 entries="{{classData}}"
+										 content-type="class"
+										 mode="entries"></epic-contentful>
+
+		<section class="wrapper">
+			<template is="dom-repeat" items="[[classData.items]]">
+					<div class="image-block">
+			      <iron-image src="http:[[item.fields.image.fields.file.url]]" sizing="cover" preload fade></iron-image>
+			    </div>
+
+					<div class="copy-wrapper">
+						<h2>[[item.fields.title]]</h2>
+
+						<marked-element markdown="[[item.fields.description]]">
+							<div slot="markdown-html"></div>
+						</marked-element>
+					</div>
+			</template>
+		</section>
+	</template>
+	<script>
+	Polymer({
+
+		is: 'nc-page-classes',
+
+		properties: {
+			config: Object,
+			classData: Object
+		},
+
+		observers: [
+			'_logPosts(classData)'
+		],
+
+		_logPosts: function() {
+			console.log('class', this.classData);
+		}
+
+	});
+	</script>
+</dom-module>

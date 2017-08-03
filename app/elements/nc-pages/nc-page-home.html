@@ -1,0 +1,41 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="nc-page-home">
+	<template>
+		<style include="shared-styles">
+
+		h2 {
+			margin-top: .5em;
+		}
+
+		.post {
+			display: block;
+			margin-bottom: 3em;
+		}
+		</style>
+
+		<section class="wrapper">
+			<div class="posts">
+				<template is="dom-repeat" items="[[posts.items]]">
+					<a class="post" href="/post/[[item.fields.slug]]">
+						<div class="image-block">
+				      <iron-image src="http:[[item.fields.heroImage.fields.file.url]]" sizing="cover" preload fade></iron-image>
+				    </div>
+						<h2>[[item.fields.title]]</h2>
+					</a>
+				</template>
+			</div>
+		</section>
+
+	</template>
+	<script>
+	Polymer({
+
+		is: 'nc-page-home',
+
+		properties: {
+			posts: Object
+		},
+
+	});
+	</script>
+</dom-module>

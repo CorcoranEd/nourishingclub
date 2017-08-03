@@ -1,0 +1,49 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="nc-page-catering">
+	<template>
+		<style include="shared-styles">
+		</style>
+
+		<epic-contentful token$="[[config.contentful.token]]"
+										 space$="[[config.contentful.space]]"
+										 entries="{{cateringData}}"
+										 content-type="catering"
+										 mode="entries"></epic-contentful>
+
+		<section class="wrapper">
+			<template is="dom-repeat" items="[[cateringData.items]]">
+					<div class="image-block">
+			      <iron-image src="http:[[item.fields.image.fields.file.url]]" sizing="cover" preload fade></iron-image>
+			    </div>
+
+					<div class="copy-wrapper">
+						<h2>[[item.fields.title]]</h2>
+
+						<marked-element markdown="[[item.fields.description]]">
+							<div slot="markdown-html"></div>
+						</marked-element>
+					</div>
+			</template>
+		</section>
+	</template>
+	<script>
+	Polymer({
+
+		is: 'nc-page-catering',
+
+		properties: {
+			config: Object,
+			cateringData: Object
+		},
+
+		observers: [
+			'_logPosts(cateringData)'
+		],
+
+		_logPosts: function() {
+			console.log('catering', this.cateringData);
+		}
+
+	});
+	</script>
+</dom-module>

@@ -1,0 +1,84 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="nc-app">
+	<template>
+		<app-location route="{{route}}"></app-location>
+
+		<app-route route="{{route}}"
+							 pattern="/:page"
+							 data="{{routeData}}"
+							 tail="{{subRoute}}"></app-route>
+
+		<app-scrollpos-control reset="true" selected="{{routeData.page}}"></app-scrollpos-control>
+
+		<epic-contentful token$="[[config.contentful.token]]"
+										 space$="[[config.contentful.space]]"
+										 entries="{{postData}}"
+										 content-type="recipePost"
+										 mode="entries"></epic-contentful>
+
+		<nc-nav selected="{{routeData.page}}"></nc-nav>
+
+		<iron-pages id="pages"
+			class="page-wrapper"
+			attr-for-selected="name"
+			selected="[[routeData.page]]"
+			fallback-selection="">
+
+			<nc-page-home 	 			name=""
+											 			posts="[[postData]]"></nc-page-home>
+
+			<nc-page-post		 			name="post"
+											 			posts="[[postData]]"
+											 			route="[[route]]"></nc-page-post>
+
+			<nc-page-about 	 			name="about"
+														config="[[config]]"></nc-page-about>
+
+			<nc-page-classes 	 		name="classes"
+														config="[[config]]"></nc-page-classes>
+
+			<nc-page-consultation name="consultation"
+														config="[[config]]"></nc-page-consultation>
+
+			<nc-page-catering 	 	name="catering"
+														config="[[config]]"></nc-page-catering>
+
+		</iron-pages>
+
+		<nc-footer></nc-footer>
+
+	</template>
+	<script>
+	Polymer({
+
+		is: 'nc-app',
+
+		properties: {
+			config: {
+				type: Object,
+				value: {
+					"contentful": {
+						"token": "7cdfd5ad769e20dfd98a963c01373648acfdd1da9cbb6be0b633d003f8ab9b69",
+						"space": "7z4r1b6ouxgk"
+					}
+				}
+			},
+
+			route: Object,
+			routeData: Object,
+			subRoute: Object,
+
+			postData: Object
+		},
+
+		observers: [
+			'_logPosts(postData)'
+		],
+
+		_logPosts: function() {
+			console.log(this.postData, this.config);
+		}
+
+	});
+	</script>
+</dom-module>

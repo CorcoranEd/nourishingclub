@@ -1,0 +1,49 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="nc-page-about">
+	<template>
+		<style include="shared-styles">
+		</style>
+
+		<epic-contentful token$="[[config.contentful.token]]"
+										 space$="[[config.contentful.space]]"
+										 entries="{{aboutData}}"
+										 content-type="author"
+										 mode="entries"></epic-contentful>
+
+		<section class="wrapper">
+			<template is="dom-repeat" items="[[aboutData.items]]">
+					<div class="image-block">
+			      <iron-image src="http:[[item.fields.profilePhoto.fields.file.url]]" sizing="cover" preload fade></iron-image>
+			    </div>
+
+					<div class="copy-wrapper">
+						<h2>About [[item.fields.name]]</h2>
+
+						<marked-element markdown="[[item.fields.biography]]">
+							<div slot="markdown-html"></div>
+						</marked-element>
+					</div>
+			</template>
+		</section>
+	</template>
+	<script>
+	Polymer({
+
+		is: 'nc-page-about',
+
+		properties: {
+			config: Object,
+			aboutData: Object
+		},
+
+		observers: [
+			'_logPosts(aboutData)'
+		],
+
+		_logPosts: function() {
+			console.log('about', this.aboutData);
+		}
+
+	});
+	</script>
+</dom-module>
