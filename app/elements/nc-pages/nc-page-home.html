@@ -2,26 +2,56 @@
 <dom-module id="nc-page-home">
 	<template>
 		<style include="shared-styles">
-
-		h2 {
-			margin-top: .5em;
+		.posts {
+			display: flex;
+			flex-flow: row wrap;
 		}
 
 		.post {
-			display: block;
+			box-sizing: border-box;
+			width: 50%;
 			margin-bottom: 3em;
+		}
+
+		.post:first-child {
+			width: 100%;
+		}
+
+		.copy {
+			max-width: 680px;
+			margin-top: 2em;
+		}
+
+		p {
+			display: block; /* Fallback for non-webkit */
+			height: 3.6em; /* Fallback for non-webkit */
+			display: -webkit-box;
+		  -webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			text-overflow: ellipsis;
+			overflow: hidden;
 		}
 		</style>
 
 		<section class="wrapper">
 			<div class="posts">
 				<template is="dom-repeat" items="[[posts.items]]">
-					<a class="post" href="/post/[[item.fields.slug]]">
-						<div class="image-block">
-				      <iron-image src="http:[[item.fields.heroImage.fields.file.url]]" sizing="cover" preload fade></iron-image>
-				    </div>
-						<h2>[[item.fields.title]]</h2>
-					</a>
+					<div class="post padded">
+						<a href="/post/[[item.fields.slug]]">
+							<div class="image-block">
+					      <iron-image src="http:[[item.fields.heroImage.fields.file.url]]" sizing="cover" preload fade></iron-image>
+					    </div>
+						</a>
+						<div class="copy">
+							<a href="/post/[[item.fields.slug]]">
+								<h2 class="underline">[[item.fields.title]]</h2>
+							</a>
+							<p>[[item.fields.blog]]</p>
+							<a href="/post/[[item.fields.slug]]">
+								<h5>See the recipe</h5>
+							</a>
+						</div>
+					</div>
 				</template>
 			</div>
 		</section>

@@ -47,13 +47,13 @@
 					 data="{{routeData}}"
 					 active="{{pageActive}}"></app-route>
 
-		<section class="wrapper">
+		<section class="wrapper padded">
 			<div class="image-block">
 	      <iron-image src="http:[[post.fields.heroImage.fields.file.url]]" sizing="cover" preload fade></iron-image>
 	    </div>
-			
+
 			<div class="copy-wrapper">
-				<h1 class="post-name">[[post.fields.title]]</h1>
+				<h1 class="post-name underline">[[post.fields.title]]</h1>
 				<h4>By [[post.fields.author.fields.name]]</h4>
 
 				<marked-element markdown="[[post.fields.blog]]">
@@ -63,7 +63,7 @@
 
 			<div class="recipe">
 				<div class="recipe-name">
-					<h1 class="post-name">[[post.fields.title]]</h1>
+					<h1 class="post-name underline">[[post.fields.title]]</h1>
 					<h4>By [[post.fields.author.fields.name]]</h4>
 					<h5 hidden="[[!post.fields.recipeCategory.0.fields.title]]">Category — [[post.fields.recipeCategory.0.fields.title]]</h5>
 				</div>

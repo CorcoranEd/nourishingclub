@@ -11,7 +11,7 @@
 			--small-font-size: calc(var(--base-font-size) * 0.875);
 			--base-line-height: 1.8em;
 			/*spacing variables*/
-			--spacing-unit: 40px;
+			--spacing-unit: 1em;
 			--content-width: 1200px;
 			--max-width-x-large: 1600px;
 			--max-width-large: 1200px;
@@ -91,35 +91,30 @@
 		h4,
 		h5,
 		h6 {
-			font-weight: var(--base-font-weight);
+			font-weight: 500;
 		}
 
 		h1 {
-			font-weight: 500;
 			font-size: 2.625em;
 			line-height: 1em;
 		}
 
 		h2 {
-			font-weight: 500;
 			font-size: 2em;
 			line-height: 1em;
 		}
 
 		h3 {
-			font-weight: 500;
 			font-size: 1.5em;
 			line-height: 1em;
 		}
 
 		h4 {
-			font-weight: 500;
 			font-size: 1.125em;
 			line-height: 1em;
 		}
 
 		h5 {
-			font-weight: 500;
 			font-size: 1em;
 			line-height: 1em;
 		}
@@ -127,6 +122,22 @@
 		h6 {
 			font-size: 0.875em;
 			line-height: 1em;
+		}
+
+		.underline {
+			position: relative;
+			padding-bottom: 4px;
+			border-bottom: 2px solid #333;
+			display: inline-block;
+		}
+
+		.underline:after {
+			content: '';
+			position: absolute;
+			bottom: -2px;
+			right: -8px;
+			width: 4px;
+			border-bottom: 2px solid #333;
 		}
 
 		marked-element ::content a,
@@ -176,9 +187,11 @@
 			position: relative;
 			margin-right: auto;
 			margin-left: auto;
+		}
 
-			padding-right: var(--spacing-unit);
+		.padded {
 			padding-left: var(--spacing-unit);
+			padding-right: var(--spacing-unit);
 		}
 
 		.copy-wrapper {
@@ -190,29 +203,15 @@
 			.wrapper {
 				max-width: var(--max-width-x-large);
 			}
-
-			.wide-wrapper {
-				padding-right: calc(var(--spacing-unit) / 2);
-				padding-left: calc(var(--spacing-unit) / 2);
-			}
 		}
 
 		@media (max-width: 1680px) {
 			.wrapper {
 				max-width: var(--content-width);
 			}
-
-			.wide-wrapper {
-				padding-right: calc(var(--spacing-unit) / 2);
-				padding-left: calc(var(--spacing-unit) / 2);
-			}
 		}
 
 		@media (max-width: 680px) {
-			.wide-wrapper {
-				padding-right: calc(var(--spacing-unit) / 4);
-				padding-left: calc(var(--spacing-unit) / 4);
-			}
 		}
 
 		</style>
