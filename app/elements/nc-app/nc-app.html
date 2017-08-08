@@ -8,8 +8,6 @@
 							 data="{{routeData}}"
 							 tail="{{subRoute}}"></app-route>
 
-		<app-scrollpos-control reset="true" selected="{{routeData.page}}"></app-scrollpos-control>
-
 		<epic-contentful token$="[[config.contentful.token]]"
 										 space$="[[config.contentful.space]]"
 										 entries="{{postData}}"
@@ -72,13 +70,17 @@
 		},
 
 		observers: [
-			'_logPosts(postData)'
+			'_logPosts(postData)',
+			'_resetScroll(route)'
 		],
 
 		_logPosts: function() {
 			console.log(this.postData, this.config);
-		}
+		},
 
+		_resetScroll: function(new_data, old_data) {
+			Polymer.AppLayout.scroll({ top: 0, behavior: "silent" });
+		}
 	});
 	</script>
 </dom-module>
