@@ -11,31 +11,86 @@
 				justify-content: space-between;
 			}
 
-			a {
+			iron-selector a {
 				font-weight: 500;
+				border-bottom: 2px solid rgba(0, 0, 0, 0.0);
+			}
+
+			iron-selector a:hover {
+				text-decoration: none;
+				position: relative;
+				border-bottom: 2px solid #333;
+				display: inline-block;
+			}
+
+			iron-selector a:hover:before {
+				content: '';
+				position: absolute;
+				bottom: -2px;
+				left: -8px;
+				width: 4px;
+				border-bottom: 2px solid #333;
+			}
+
+			iron-selector a:hover:after {
+				content: '';
+				position: absolute;
+				bottom: -2px;
+				right: -8px;
+				width: 4px;
+				border-bottom: 2px solid #333;
+			}
+
+			iron-selector a.iron-selected {
+				position: relative;
+				padding-bottom: 0;
+				border-bottom: 2px solid #333;
+				display: inline-block;
+			}
+
+			iron-selector a.iron-selected:before {
+				content: '';
+				position: absolute;
+				bottom: -2px;
+				left: -8px;
+				width: 4px;
+				border-bottom: 2px solid #333;
+			}
+
+			iron-selector a.iron-selected:after {
+				content: '';
+				position: absolute;
+				bottom: -2px;
+				right: -8px;
+				width: 4px;
+				border-bottom: 2px solid #333;
 			}
 
 			.logo {
 				display: flex;
 				flex-flow: column nowrap;
-				align-items: center;
-				margin: 4em 0;
+				align-items: flex-start;
 			}
 
 			.nourishing {
-				width: 40%;
+				max-height: 6em;
+				margin-bottom: 2em;
 			}
 
-			.iron-selected {
-				text-decoration: underline;
+			.friends {
+				width: 100%;
+				margin-top: -4em;
+				margin-bottom: 2em;
 			}
 		</style>
 
 		<header class="wrapper padded">
-
-			<div class="logo">
-				<img class="nourishing" src="../../images/nourishing-club.svg"></img>
-			</div>
+			<a href="/">
+				<div class="logo">
+					<img class="friends" src="../../images/friends.svg"></img>
+					<img class="nourishing" src="../../images/nourishing-club.svg"></img>
+				</div>
+			</a>
 
 			<iron-selector attr-for-selected="name" selected="{{selected}}">
 				<a href="/about" name="about">About</a>
