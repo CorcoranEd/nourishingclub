@@ -8,6 +8,7 @@
 
 			iron-selector {
 				display: flex;
+				flex-flow: row nowrap;
 				justify-content: space-between;
 			}
 
@@ -81,6 +82,16 @@
 				width: 100%;
 				margin-top: -4em;
 				margin-bottom: 2em;
+			}
+
+			@media (max-width: 800px) {
+				iron-selector {
+					flex-flow: column nowrap;
+				}
+
+				iron-selector a {
+					line-height: 2em;
+				}
 			}
 		</style>
 
